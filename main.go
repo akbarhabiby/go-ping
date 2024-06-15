@@ -11,7 +11,7 @@ import (
 	"golang.org/x/net/http2/h2c"
 )
 
-const PORT = "3000"
+const PORT = 3000
 
 func init() {
 	runtime.GOMAXPROCS(1)
@@ -28,11 +28,11 @@ func main() {
 
 	// * Server
 	server := new(http.Server)
-	server.Addr = fmt.Sprintf(":%s", PORT)
+	server.Addr = fmt.Sprintf(":%d", PORT)
 	// server.Handler = handler
 	server.Handler = h2c.NewHandler(handler, &http2.Server{MaxConcurrentStreams: 500, MaxReadFrameSize: 1048576})
 
-	fmt.Printf("ping running on port %s\n", PORT)
+	fmt.Printf("ping running on port %d\n", PORT)
 	server.ListenAndServe()
 }
 
