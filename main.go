@@ -32,7 +32,7 @@ func main() {
 	// server.Handler = handler
 	server.Handler = h2c.NewHandler(handler, &http2.Server{MaxConcurrentStreams: 500, MaxReadFrameSize: 1048576})
 
-	fmt.Printf("ping running on port %d\n", PORT)
+	fmt.Printf("ping server running on port %d\n", PORT)
 	server.ListenAndServe()
 }
 
